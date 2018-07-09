@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Namerole</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="userDTO : ${listUserDTOs}">
+				<td th:text="${userDTO.id}"></td>
+				<td th:text="${userDTO.username}"></td>
+				<td th:text="${userDTO.email}"></td>
+				<td th:text="${userDTO.namerole}"></td>
+				<td><a th:href="@{/user/delete/{id}(id=${userDTO.id})}">delete</a></td>
+				<td><a th:href="@{/user/{id}(id=${userDTO.id})}">update</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<form th:action="@{/user}" method="post" th:object="${user}">
+		<input type="hidden" th:field="*{id}"/>
+		<label>username</label><br/>
+		<input type="text" th:field="*{username}"/><br/>
+		<label>email</label><br/>
+		<input type="text" th:field="*{email}"/><br/>
+		<label>password</label><br/>
+		<input type="password" th:field="*{password}"/><br/>
+		<label for="role">role : </label><br/>
+		<select th:field="*{roleId}">
+			<option value="1">admin</option>
+			<option value="2">user</option>
+		</select><br/>
+		<br/><input type="submit" value="submit"/>
+	</form>
+</body>
+</html>

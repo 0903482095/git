@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+
+</head>
+<body>
+	<div th:each="question : ${quizDTO.listQuestionDTOs}" >
+		<li style="list-style: none" th:text="${question.content}">
+			<li style="list-style: none" th:each="answer : ${question.listAnswerDTOs}">
+				<input id="1" class="correct" type="radio" th:name="${answer.id_question}"  th:value="${answer.is_correct}"/>
+				<label for="1" th:text="${answer.answer}"></label>
+			</li>
+		</li>
+	</div>
+	<button onclick="myFunction()">Check</button>
+	<p id="check"></p>
+	<script type="text/javascript" th:src="@{/js/javascrip.js}"></script>
+</body>
+</html>

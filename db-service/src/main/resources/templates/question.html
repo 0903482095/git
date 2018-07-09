@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{/question/addquiz}" method="post">
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Content</th>
+					<th>Answer</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="question,i : ${questionDTOs}">
+					<td th:text="${question.id}" th:field="*{question.id}"></td>
+					<td th:text="${question.content}"></td>
+					<td><p th:each="answer : ${question.listAnswerDTOs}"
+							th:text="${answer.answer}"></p></td>
+					<td><p th:each="answer : ${question.listAnswerDTOs}"
+							th:text="${answer.is_correct}"></p></td>
+					<td><a th:href="@{/question/delete/{id}(id=${question.id})}">delete</a></td>
+					<td><a th:href="@{/question/{id}(id=${question.id})}">update</a></td>
+					<input type="checkbox" th:field="*{question.check}"/>
+				</tr>
+			</tbody>
+		</table>
+		<input type="submit" value="addquiz"/>
+	</form>
+
+	<form th:action="@{/question}" th:object="${question}" method="post">
+		<input type="hidden" th:field="*{id}" /> <label>Content:</label> <input
+			type="text" th:field="*{content}" /><br />
+		<ul style="list-style: none">
+			<li><input type="text" th:field="*{listAnswerDTOs[0].answer}" />
+				<input type="checkbox" th:field="*{listAnswerDTOs[0].is_correct}" />
+			</li>
+			<li><input type="text" th:field="*{listAnswerDTOs[1].answer}" />
+				<input type="checkbox" th:field="*{listAnswerDTOs[1].is_correct}" />
+			</li>
+			<li><input type="text" th:field="*{listAnswerDTOs[2].answer}" />
+				<input type="checkbox" th:field="*{listAnswerDTOs[2].is_correct}" />
+			</li>
+			<li><input type="text" th:field="*{listAnswerDTOs[3].answer}" />
+				<input type="checkbox" th:field="*{listAnswerDTOs[3].is_correct}" />
+			</li>
+		</ul>
+		<input type="submit" value="Submit" />
+	</form>
+</body>
+</html>

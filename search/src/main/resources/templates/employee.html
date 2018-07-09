@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Phone</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="e : ${employeeDTOs}">
+				<td th:text="${e.id}"></td>
+				<td th:text="${e.name}"></td>
+				<td th:text="${e.phone}"></td>
+				<td><a th:href="@{/employee/delete/{idemployee}(idemployee=${e.id})}">delete</a></td>
+				
+			</tr>
+		</tbody>
+	</table>
+	<!-- <ul th:each="i : ${count}">
+		<li th:text="${i}">${i}</li>
+		<a th:href="@{/employee/page/{pagei}(pagei=${iStat.count})}" th:text="${iStat.index}"></a>
+	</ul> -->
+	
+	<option th:each="i : ${#numbers.sequence( 0, 3 )}">
+   		<a th:href="@{/employee/page/{pagei}(pagei=${i})}" th:text="${ i }"><a/> 
+	</option>
+	
+</body>
+</html>

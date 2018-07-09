@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form method="post" th:action="@{/logout}">
+		<input type="submit" value="Dang xuat"/>
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="quizDTO : ${listQuizDTOs}">
+				<td th:text="${quizDTO.id}"></td>
+				<td th:text="${quizDTO.name}"></td>
+				<td><a th:href="@{/quizquestion/{id}(id=${quizDTO.id})}">Do</a></td>
+			</tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>
